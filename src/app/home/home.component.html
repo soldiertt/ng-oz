@@ -1,2 +1,4 @@
-<h3>Home Component</h3>
-<p>Welcome to Angular Seed</p>
+<h3>Liste des personnes</h3>
+<ul>
+  <li *ngFor="let person of persons">{{person.firstname}} {{person.lastname}} ({{person.ssin}})</li>
+</ul>

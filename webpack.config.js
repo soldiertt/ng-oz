@@ -5,7 +5,7 @@ var webpackMerge = require('webpack-merge');
 // Webpack Config
 var webpackConfig = {
   entry: {
-    'main': './src/main.browser.ts',
+    'main': './src/main.browser.ts'
   },
 
   output: {
@@ -21,7 +21,7 @@ var webpackConfig = {
       {
         // your Angular Async Route paths relative to this root directory
       }
-    ),
+    )
   ],
 
   module: {
@@ -74,6 +74,5 @@ var defaultConfig = {
     setImmediate: false
   }
 };
-
 
 module.exports = webpackMerge(defaultConfig, webpackConfig);
