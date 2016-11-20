@@ -13,6 +13,7 @@
           <label for="pnr" class="col-md-4 col-form-label">PNR *</label>
           <div class="col-md-8">
             <input class="form-control" type="text" placeholder="0001" id="pnr" formControlName="pnr" maxlength="25">
+            <div class="alert alert-danger" *ngIf="createPersonForm.controls['pnr'].errors?.duplicate">Déjà utilisé</div>
           </div>
         </div>
       </div>
@@ -137,22 +138,51 @@
       </div>
     </div>
 
-    <div class="form-group row" *ngFor="let certification of createPersonForm.controls['certifications'].controls; let index = index; let lastCertif = last">
-      <label for="certification" class="col-md-3 col-form-label">Certifications</label>
-      <div class="col-md-4">
-        <select class="form-control" id="certification" [formControl]="certification.controls['certification']" >
-          <option value="">[Sélectionnez]</option>
-          <option *ngFor="let certif of allCertifications" [value]="certif.id">{{certif.value}}</option>
-        </select>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" type="date" id="date" [formControl]="certification.controls['date']" >
-      </div>
+    <div class="form-group row">
+      <label for="certification" class="col-md-2 col-form-label">Certifications</label>
       <div class="col-md-1">
-        <button type="button" class="btn btn-success" (click)="removeCertification(index)" *ngIf="index !=0 && lastCertif">Remove</button>
+        <button type="button" class="btn btn-success" (click)="addCertification()">Ajouter</button>
       </div>
+      <div class="col-md-9">
+        <div class="row" *ngFor="let certification of createPersonForm.controls['certifications'].controls; let index = index; let lastCertif = last">
+          <div class="col-md-6">
+            <select class="form-control" id="certification" [formControl]="certification.controls['certification']" >
+              <option value="">[Sélectionnez]</option>
+              <option *ngFor="let certif of allCertifications" [value]="certif.id">{{certif.value}}</option>
+            </select>
+          </div>
+          <div class="col-md-1"><label for="dateCertif" class="col-form-label">depuis</label></div>
+          <div class="col-md-3">
+            <input class="form-control" type="date" id="dateCertif" [formControl]="certification.controls['date']" >
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-success" (click)="removeCertification(index)" *ngIf="lastCertif">Supp.</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="work_regime" class="col-md-2 col-form-label">Régimes de travail</label>
       <div class="col-md-1">
-        <button type="button" class="btn btn-success" (click)="addCertification()" *ngIf="lastCertif">ADD</button>
+        <button type="button" class="btn btn-success" (click)="addWorkRegime()">Ajouter</button>
+      </div>
+      <div class="col-md-9">
+        <div class="row" *ngFor="let workRegime of createPersonForm.controls['work_regimes'].controls; let index = index; let lastWorkRegime = last">
+          <div class="col-md-6">
+            <select class="form-control" id="work_regime" [formControl]="workRegime.controls['work_regime']" >
+              <option value="">[Sélectionnez]</option>
+              <option *ngFor="let regime of allWorkRegimes" [value]="regime.id">{{regime.value}}</option>
+            </select>
+          </div>
+          <div class="col-md-1"><label for="dateRegime" class="col-form-label">depuis</label></div>
+          <div class="col-md-3">
+            <input class="form-control" type="date" id="dateRegime" [formControl]="workRegime.controls['date']" >
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-success" (click)="removeWorkRegime(index)" *ngIf="lastRegime">Supp.</button>
+          </div>
+        </div>
       </div>
     </div>
 

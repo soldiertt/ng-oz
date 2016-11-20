@@ -1,7 +1,6 @@
 import Person from "../model/person.model";
 import {Grade} from "../model/person.model";
 import {Brigade} from "../model/person.model";
-import {SecurityFunction} from "../model/person.model";
 import "rxjs/add/operator/map";
 export default class ObjectMapper {
 
@@ -22,7 +21,6 @@ export default class ObjectMapper {
       person.rescuer = item.rescuer;
       person.grade = new Grade(item.grade_value);
       person.brigade = new Brigade(item.brigade_value);
-      person.security_function = new SecurityFunction(item.security_function_value);
       return person;
     });
   }

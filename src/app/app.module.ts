@@ -11,6 +11,7 @@ import {PersonRestService} from "./services/person.rest.service";
 import {HeaderComponent} from "./header/header.component";
 import {ManagePersonComponent} from "./admin/person/manage-person.component";
 import {CommonRestService} from "./services/common.rest.service";
+import {OzAsyncValidators} from "./forms/OzAsyncValidators";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {CommonRestService} from "./services/common.rest.service";
   ],
   providers: [
     PersonRestService,
-    CommonRestService
+    CommonRestService,
+    OzAsyncValidators
   ],
   bootstrap: [ AppComponent ]
 })

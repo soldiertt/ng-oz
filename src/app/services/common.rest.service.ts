@@ -20,4 +20,8 @@ export class CommonRestService {
   listAllCertification(): Observable<Array<any>> {
     return this.http.get(this.BASE_URL + "/certification").map(res => res.json());
   }
+
+  listAllWorkRegime(): Observable<Array<any>> {
+    return this.http.get(this.BASE_URL + "/work_regime").map(res => res.json());
+  }
 }

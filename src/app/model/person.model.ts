@@ -12,13 +12,6 @@ export class Brigade {
   }
 }
 
-export class SecurityFunction {
-  value: string;
-  constructor(value) {
-    this.value = value;
-  }
-}
-
 export class Certification {
   value: string;
   constructor(value) {
@@ -48,7 +41,6 @@ export default class Person {
   rescuer: boolean;
   grade: Grade;
   brigade: Brigade;
-  security_function: SecurityFunction;
   certifications: Certification[];
   work_regimes: WorkRegime[];
 }
