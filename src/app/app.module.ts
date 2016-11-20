@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import {PersonRestService} from "./services/person.rest.service";
 import {HeaderComponent} from "./header/header.component";
 import {ManagePersonComponent} from "./admin/person/manage-person.component";
+import {CommonRestService} from "./services/common.rest.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {ManagePersonComponent} from "./admin/person/manage-person.component";
     RouterModule.forRoot(rootRouterConfig, { useHash: true })
   ],
   providers: [
-    PersonRestService
+    PersonRestService,
+    CommonRestService
   ],
   bootstrap: [ AppComponent ]
 })

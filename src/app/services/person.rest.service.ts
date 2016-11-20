@@ -15,4 +15,7 @@ export class PersonRestService {
     return this.http.get(this.BASE_URL + "/person").map(res => res.json()).map(person => ObjectMapper.mapJsonToPersons(person));
   }
 
+  create(person: Person): Observable<any> {
+    return this.http.post(this.BASE_URL + "/person", person);
+  }
 }

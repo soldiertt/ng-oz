@@ -1,20 +1,26 @@
 <div class="container">
   <h1>Créer une personne</h1>
-  <form>
+  <div class="alert alert-info alert-dismissible fade in" *ngIf="success">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    La personne a été créée avec succès.
+  </div>
+  <form [formGroup]="createPersonForm" (submit)="create()">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="pnr" class="col-md-4 col-form-label">PNR</label>
+          <label for="pnr" class="col-md-4 col-form-label">PNR *</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" placeholder="0001" id="pnr">
+            <input class="form-control" type="text" placeholder="0001" id="pnr" formControlName="pnr" maxlength="25">
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="badge" class="col-md-4 col-form-label">Badge</label>
+          <label for="badge" class="col-md-4 col-form-label">Badge *</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" id="badge">
+            <input class="form-control" type="text" id="badge" formControlName="badge" maxlength="25">
           </div>
         </div>
       </div>
@@ -22,17 +28,17 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="firstname" class="col-md-4 col-form-label">Prénom</label>
+          <label for="firstname" class="col-md-4 col-form-label">Prénom *</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" id="firstname">
+            <input class="form-control" type="text" id="firstname" formControlName="firstname" maxlength="25">
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="lastname" class="col-md-4 col-form-label">Nom</label>
+          <label for="lastname" class="col-md-4 col-form-label">Nom *</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" id="lastname">
+            <input class="form-control" type="text" id="lastname" formControlName="lastname" maxlength="30">
           </div>
         </div>
       </div>
@@ -40,17 +46,17 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="birthdate" class="col-md-4 col-form-label">Date de naissance</label>
+          <label for="birthdate" class="col-md-4 col-form-label">Date de naissance *</label>
           <div class="col-md-8">
-            <input class="form-control" type="date" id="birthdate">
+            <input class="form-control" type="date" id="birthdate" formControlName="birthdate">
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="ssin" class="col-md-4 col-form-label">Numéro national</label>
+          <label for="ssin" class="col-md-4 col-form-label">Numéro national *</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" id="ssin">
+            <input class="form-control" type="text" id="ssin" formControlName="ssin" maxlength="11">
           </div>
         </div>
       </div>
@@ -60,7 +66,7 @@
         <div class="form-group row">
           <label for="priv_phone" class="col-md-4 col-form-label">Téléphone privé</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" id="priv_phone">
+            <input class="form-control" type="text" id="priv_phone" formControlName="priv_phone" maxlength="25">
           </div>
         </div>
       </div>
@@ -68,7 +74,7 @@
         <div class="form-group row">
           <label for="work_phone" class="col-md-4 col-form-label">Téléphone professionnel</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" id="work_phone">
+            <input class="form-control" type="text" id="work_phone" formControlName="work_phone" maxlength="25">
           </div>
         </div>
       </div>
@@ -78,7 +84,7 @@
         <div class="form-group row">
           <label for="photo" class="col-md-4 col-form-label">Photo</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" id="photo">
+            <input class="form-control" type="text" id="photo" formControlName="photo" maxlength="50">
           </div>
         </div>
       </div>
@@ -86,7 +92,7 @@
         <div class="form-group row">
           <label for="medical_examination_date" class="col-md-4 col-form-label">Date de dernière visite médicale</label>
           <div class="col-md-8">
-            <input class="form-control" type="date" id="medical_examination_date">
+            <input class="form-control" type="date" id="medical_examination_date" formControlName="medical_examination_date">
           </div>
         </div>
       </div>
@@ -96,16 +102,17 @@
         <div class="form-group row">
           <label for="rescuer" class="col-md-4 col-form-label">Secouriste</label>
           <div class="col-md-8">
-            <input type="checkbox" id="rescuer">
+            <input type="checkbox" id="rescuer" formControlName="rescuer">
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="grade" class="col-md-4 col-form-label">Grade</label>
+          <label for="grade" class="col-md-4 col-form-label">Grade *</label>
           <div class="col-md-8">
-            <select class="form-control" id="grade">
+            <select class="form-control" id="grade" formControlName="grade">
               <option value="">[Sélectionnez]</option>
+              <option *ngFor="let grade of allGrades" [value]="grade.id">{{grade.value}}</option>
             </select>
           </div>
         </div>
@@ -114,28 +121,44 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="brigade" class="col-md-4 col-form-label">Brigade</label>
+          <label for="brigade" class="col-md-4 col-form-label">Brigade *</label>
           <div class="col-md-8">
-            <select class="form-control" id="brigade">
+            <select class="form-control" id="brigade" formControlName="brigade">
               <option value="">[Sélectionnez]</option>
+              <option *ngFor="let brigade of allBrigades" [value]="brigade.id">{{brigade.value}}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="security_function" class="col-md-4 col-form-label">Fonction de sécurité</label>
-          <div class="col-md-8">
-            <select class="form-control" id="security_function">
-              <option value="">[Sélectionnez]</option>
-            </select>
-          </div>
+
         </div>
       </div>
     </div>
+
+    <div class="form-group row" *ngFor="let certification of createPersonForm.controls['certifications'].controls; let index = index; let lastCertif = last">
+      <label for="certification" class="col-md-3 col-form-label">Certifications</label>
+      <div class="col-md-4">
+        <select class="form-control" id="certification" [formControl]="certification.controls['certification']" >
+          <option value="">[Sélectionnez]</option>
+          <option *ngFor="let certif of allCertifications" [value]="certif.id">{{certif.value}}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <input class="form-control" type="date" id="date" [formControl]="certification.controls['date']" >
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="btn btn-success" (click)="removeCertification(index)" *ngIf="index !=0 && lastCertif">Remove</button>
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="btn btn-success" (click)="addCertification()" *ngIf="lastCertif">ADD</button>
+      </div>
+    </div>
+
     <div class="row">
       <button type="reset" id="reset" class="btn btn-default">Effacer</button>
-      <button type="submit" id="submit" class="btn btn-primary">Valider</button>
+      <button type="submit" id="submit" class="btn btn-primary" [disabled]="!createPersonForm.valid">Valider</button>
     </div>
   </form>
 </div>

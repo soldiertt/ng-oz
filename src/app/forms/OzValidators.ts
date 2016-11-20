@@ -1,6 +1,6 @@
 import {FormControl} from '@angular/forms';
 
-export default class CustomValidators {
+export default class OzValidators {
   /**
    * sample from http://blog.thoughtram.io/angular/2016/03/14/custom-validators-in-angular-2.html
    */
@@ -12,5 +12,15 @@ export default class CustomValidators {
         valid: false
       }
     };
+  }
+
+  static ssin(c: FormControl) {
+    if (c.value && c.value.length <= 11) {
+      return null;
+    } else {
+      return {
+        ssin: { valid: false}
+      };
+    }
   }
 }

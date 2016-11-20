@@ -19,6 +19,20 @@ export class SecurityFunction {
   }
 }
 
+export class Certification {
+  value: string;
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+export class WorkRegime {
+  value: string;
+  constructor(value) {
+    this.value = value;
+  }
+}
+
 export default class Person {
   id: number;
   pnr: string;
@@ -35,4 +49,6 @@ export default class Person {
   grade: Grade;
   brigade: Brigade;
   security_function: SecurityFunction;
+  certifications: Certification[];
+  work_regimes: WorkRegime[];
 }
