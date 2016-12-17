@@ -11,8 +11,20 @@ export class OzAsyncValidators {
   constructor(private http: Http) {}
 
   uniquePnr(c: FormControl): Observable<any> {
-    if (c.value) {
-      return this.http.get(this.BASE_URL + "/unique/pnr/" + c.value.trim()).map(res => res.json()).map(bool => {
+    return this.checkUnique(c.value, "pnr");
+  }
+
+  uniqueBadge(c: FormControl): Observable<any> {
+    return this.checkUnique(c.value, "badge");
+  }
+
+  uniqueSsin(c: FormControl): Observable<any> {
+    return this.checkUnique(c.value, "ssin");
+  }
+
+  private checkUnique(value: string, itemPath: string): Observable<any> {
+    if (value) {
+      return this.http.get(this.BASE_URL + "/unique/" + itemPath + "/" + value.trim()).map(res => res.json()).map(bool => {
           if (bool.value) {
             return {duplicate: bool.value};
           } else {

@@ -1,28 +1,28 @@
 export class Grade {
-  value: string;
-  constructor(value) {
-    this.value = value;
+  denomination: string;
+  constructor(denomination) {
+    this.denomination = denomination;
   }
 }
 
 export class Brigade {
-  value: string;
-  constructor(value) {
-    this.value = value;
+  code: string;
+  constructor(code) {
+    this.code = code;
   }
 }
 
 export class Certification {
-  value: string;
-  constructor(value) {
-    this.value = value;
+  denomination: string;
+  constructor(denomination) {
+    this.denomination = denomination;
   }
 }
 
 export class WorkRegime {
-  value: string;
-  constructor(value) {
-    this.value = value;
+  denomination: string;
+  constructor(denomination) {
+    this.denomination = denomination;
   }
 }
 
@@ -39,6 +39,9 @@ export default class Person {
   work_phone: string;
   medical_examination_date: Date;
   rescuer: boolean;
+  epi: boolean;
+  cova: boolean;
+  catenary_grounding: boolean;
   grade: Grade;
   brigade: Brigade;
   certifications: Certification[];

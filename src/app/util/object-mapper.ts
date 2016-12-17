@@ -19,6 +19,9 @@ export default class ObjectMapper {
       person.work_phone = item.work_phone;
       person.medical_examination_date = item.medical_examination_date;
       person.rescuer = item.rescuer;
+      person.epi = item.epi;
+      person.cova = item.cova;
+      person.catenary_grounding = item.catenary_grounding;
       person.grade = new Grade(item.grade_value);
       person.brigade = new Brigade(item.brigade_value);
       return person;

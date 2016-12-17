@@ -9,131 +9,132 @@
   <form [formGroup]="createPersonForm" (submit)="create()">
     <div class="row">
       <div class="col-md-6">
+        <!-- PNR -->
         <div class="form-group row">
-          <label for="pnr" class="col-md-4 col-form-label">PNR *</label>
+          <label for="pnr" class="col-md-4 col-form-label">PNR
+            <i class="fa fa-exclamation-triangle icon-valid" aria-hidden="true" [class.icon-required]="!createPersonForm.controls['pnr'].valid"></i>
+          </label>
           <div class="col-md-8">
             <input class="form-control" type="text" placeholder="0001" id="pnr" formControlName="pnr" maxlength="25">
             <div class="alert alert-danger" *ngIf="createPersonForm.controls['pnr'].errors?.duplicate">Déjà utilisé</div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
+        <!-- Basge -->
         <div class="form-group row">
-          <label for="badge" class="col-md-4 col-form-label">Badge *</label>
+          <label for="badge" class="col-md-4 col-form-label">Badge
+            <i class="fa fa-exclamation-triangle icon-valid" aria-hidden="true" [class.icon-required]="!createPersonForm.controls['badge'].valid"></i>
+          </label>
           <div class="col-md-8">
             <input class="form-control" type="text" id="badge" formControlName="badge" maxlength="25">
+            <div class="alert alert-danger" *ngIf="createPersonForm.controls['badge'].errors?.duplicate">Déjà utilisé</div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
+        <!-- Firstname -->
         <div class="form-group row">
-          <label for="firstname" class="col-md-4 col-form-label">Prénom *</label>
+          <label for="firstname" class="col-md-4 col-form-label">Prénom
+            <i class="fa fa-exclamation-triangle icon-valid" aria-hidden="true" [class.icon-required]="!createPersonForm.controls['firstname'].valid"></i>
+          </label>
           <div class="col-md-8">
             <input class="form-control" type="text" id="firstname" formControlName="firstname" maxlength="25">
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
+        <!-- Lastname -->
         <div class="form-group row">
-          <label for="lastname" class="col-md-4 col-form-label">Nom *</label>
+          <label for="lastname" class="col-md-4 col-form-label">Nom
+            <i class="fa fa-exclamation-triangle icon-valid" aria-hidden="true" [class.icon-required]="!createPersonForm.controls['lastname'].valid"></i>
+          </label>
           <div class="col-md-8">
             <input class="form-control" type="text" id="lastname" formControlName="lastname" maxlength="30">
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
+        <!-- SSIN -->
         <div class="form-group row">
-          <label for="birthdate" class="col-md-4 col-form-label">Date de naissance *</label>
+          <label for="ssin" class="col-md-4 col-form-label">Numéro national
+            <i class="fa fa-exclamation-triangle icon-valid" aria-hidden="true" [class.icon-required]="!createPersonForm.controls['ssin'].valid"></i>
+          </label>
+          <div class="col-md-8">
+            <input class="form-control" type="text" id="ssin" formControlName="ssin" maxlength="11">
+            <div class="alert alert-danger" *ngIf="createPersonForm.controls['ssin'].errors?.duplicate">Déjà utilisé</div>
+          </div>
+        </div>
+        <!-- Birthdate -->
+        <div class="form-group row">
+          <label for="birthdate" class="col-md-4 col-form-label">Date de naissance
+            <i class="fa fa-exclamation-triangle icon-valid" aria-hidden="true" [class.icon-required]="!createPersonForm.controls['birthdate'].valid"></i>
+          </label>
           <div class="col-md-8">
             <input class="form-control" type="date" id="birthdate" formControlName="birthdate">
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
+        <!-- Checkboxes -->
         <div class="form-group row">
-          <label for="ssin" class="col-md-4 col-form-label">Numéro national *</label>
+          <label class="col-md-4 col-form-label">Compétences</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" id="ssin" formControlName="ssin" maxlength="11">
+            <ul class="list-unstyled">
+              <li><input type="checkbox" id="rescuer" formControlName="rescuer"> <label for="rescuer" class="col-form-label">Secouriste</label></li>
+              <li><input type="checkbox" id="epi" formControlName="epi"> <label for="epi" class="col-form-label">EPI</label></li>
+              <li><input type="checkbox" id="cova" formControlName="cova"> <label for="cova" class="col-form-label">COVA</label></li>
+              <li><input type="checkbox" id="catenary_grounding" formControlName="catenary_grounding">
+                <label for="catenary_grounding" class="col-form-label">Mise à la terre caténaire</label></li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
+
+      <!-- SECOND COLUMN -->
+
       <div class="col-md-6">
+        <!-- GRADE -->
+        <div class="form-group row">
+          <label for="grade" class="col-md-4 col-form-label">Grade
+            <i class="fa fa-exclamation-triangle icon-valid" aria-hidden="true" [class.icon-required]="!createPersonForm.controls['grade'].valid"></i>
+          </label>
+          <div class="col-md-8">
+            <select class="form-control" id="grade" formControlName="grade">
+              <option value="">[Sélectionnez]</option>
+              <option *ngFor="let grade of allGrades" [value]="grade.id">{{grade.denomination}}</option>
+            </select>
+          </div>
+        </div>
+        <!-- Brigade -->
+        <div class="form-group row">
+          <label for="brigade" class="col-md-4 col-form-label">Brigade
+            <i class="fa fa-exclamation-triangle icon-valid" aria-hidden="true" [class.icon-required]="!createPersonForm.controls['brigade'].valid"></i>
+          </label>
+          <div class="col-md-8">
+            <select class="form-control" id="brigade" formControlName="brigade">
+              <option value="">[Sélectionnez]</option>
+              <option *ngFor="let brigade of allBrigades" [value]="brigade.id">{{brigade.code}}</option>
+            </select>
+          </div>
+        </div>
+        <!-- Private phone -->
         <div class="form-group row">
           <label for="priv_phone" class="col-md-4 col-form-label">Téléphone privé</label>
           <div class="col-md-8">
             <input class="form-control" type="text" id="priv_phone" formControlName="priv_phone" maxlength="25">
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
+        <!-- Work phone -->
         <div class="form-group row">
           <label for="work_phone" class="col-md-4 col-form-label">Téléphone professionnel</label>
           <div class="col-md-8">
             <input class="form-control" type="text" id="work_phone" formControlName="work_phone" maxlength="25">
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group row">
-          <label for="photo" class="col-md-4 col-form-label">Photo</label>
-          <div class="col-md-8">
-            <input class="form-control" type="text" id="photo" formControlName="photo" maxlength="50">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
+        <!-- Medical examination date -->
         <div class="form-group row">
           <label for="medical_examination_date" class="col-md-4 col-form-label">Date de dernière visite médicale</label>
           <div class="col-md-8">
             <input class="form-control" type="date" id="medical_examination_date" formControlName="medical_examination_date">
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
+        <!-- Photo -->
         <div class="form-group row">
-          <label for="rescuer" class="col-md-4 col-form-label">Secouriste</label>
+          <label for="photo" class="col-md-4 col-form-label">Photo</label>
           <div class="col-md-8">
-            <input type="checkbox" id="rescuer" formControlName="rescuer">
+            <input class="form-control" type="text" id="photo" formControlName="photo" maxlength="50">
           </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group row">
-          <label for="grade" class="col-md-4 col-form-label">Grade *</label>
-          <div class="col-md-8">
-            <select class="form-control" id="grade" formControlName="grade">
-              <option value="">[Sélectionnez]</option>
-              <option *ngFor="let grade of allGrades" [value]="grade.id">{{grade.value}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group row">
-          <label for="brigade" class="col-md-4 col-form-label">Brigade *</label>
-          <div class="col-md-8">
-            <select class="form-control" id="brigade" formControlName="brigade">
-              <option value="">[Sélectionnez]</option>
-              <option *ngFor="let brigade of allBrigades" [value]="brigade.id">{{brigade.value}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group row">
-
         </div>
       </div>
     </div>
@@ -144,11 +145,11 @@
         <button type="button" class="btn btn-success" (click)="addCertification()">Ajouter</button>
       </div>
       <div class="col-md-9">
-        <div class="row" *ngFor="let certification of createPersonForm.controls['certifications'].controls; let index = index; let lastCertif = last">
+        <div class="row" *ngFor="let certification of createPersonForm.controls['certifications'].controls; let index = index">
           <div class="col-md-6">
             <select class="form-control" id="certification" [formControl]="certification.controls['certification']" >
               <option value="">[Sélectionnez]</option>
-              <option *ngFor="let certif of allCertifications" [value]="certif.id">{{certif.value}}</option>
+              <option *ngFor="let certif of allCertifications" [value]="certif.id">{{certif.denomination}}</option>
             </select>
           </div>
           <div class="col-md-1"><label for="dateCertif" class="col-form-label">depuis</label></div>
@@ -156,7 +157,7 @@
             <input class="form-control" type="date" id="dateCertif" [formControl]="certification.controls['date']" >
           </div>
           <div class="col-md-2">
-            <button type="button" class="btn btn-success" (click)="removeCertification(index)" *ngIf="lastCertif">Supp.</button>
+            <button type="button" class="btn btn-success" (click)="removeCertification(index)">Supp.</button>
           </div>
         </div>
       </div>
@@ -168,11 +169,11 @@
         <button type="button" class="btn btn-success" (click)="addWorkRegime()">Ajouter</button>
       </div>
       <div class="col-md-9">
-        <div class="row" *ngFor="let workRegime of createPersonForm.controls['work_regimes'].controls; let index = index; let lastWorkRegime = last">
+        <div class="row" *ngFor="let workRegime of createPersonForm.controls['work_regimes'].controls; let index = index">
           <div class="col-md-6">
             <select class="form-control" id="work_regime" [formControl]="workRegime.controls['work_regime']" >
               <option value="">[Sélectionnez]</option>
-              <option *ngFor="let regime of allWorkRegimes" [value]="regime.id">{{regime.value}}</option>
+              <option *ngFor="let regime of allWorkRegimes" [value]="regime.id">{{regime.denomination}}</option>
             </select>
           </div>
           <div class="col-md-1"><label for="dateRegime" class="col-form-label">depuis</label></div>
@@ -180,7 +181,7 @@
             <input class="form-control" type="date" id="dateRegime" [formControl]="workRegime.controls['date']" >
           </div>
           <div class="col-md-2">
-            <button type="button" class="btn btn-success" (click)="removeWorkRegime(index)" *ngIf="lastRegime">Supp.</button>
+            <button type="button" class="btn btn-success" (click)="removeWorkRegime(index)">Supp.</button>
           </div>
         </div>
       </div>

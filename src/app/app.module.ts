@@ -12,13 +12,16 @@ import {HeaderComponent} from "./header/header.component";
 import {ManagePersonComponent} from "./admin/person/manage-person.component";
 import {CommonRestService} from "./services/common.rest.service";
 import {OzAsyncValidators} from "./forms/OzAsyncValidators";
+import {PrestationComponent} from "./prestation/prestation.component";
+import {AbsenceRestService} from "./services/absence.rest.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ManagePersonComponent
+    ManagePersonComponent,
+    PrestationComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import {OzAsyncValidators} from "./forms/OzAsyncValidators";
   ],
   providers: [
     PersonRestService,
+    AbsenceRestService,
     CommonRestService,
     OzAsyncValidators
   ],

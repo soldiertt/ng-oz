@@ -12,7 +12,8 @@ import {OzAsyncValidators} from "../../forms/OzAsyncValidators";
 import {Http} from "@angular/http";
 @Component({
   selector:'oz-manage-person',
-  templateUrl: './manage-person.component.html'
+  templateUrl: './manage-person.component.html',
+  styleUrls: ['./manage-person.component.css']
 })
 export class ManagePersonComponent implements OnInit {
   allGrades: Grade[];
@@ -50,14 +51,17 @@ export class ManagePersonComponent implements OnInit {
       firstname: this.fb.control("", Validators.required),
       grade: this.fb.control("", Validators.required),
       brigade: this.fb.control("", Validators.required),
-      ssin: this.fb.control("", [Validators.required, OzValidators.ssin]),
-      badge: this.fb.control("", Validators.required),
+      ssin: this.fb.control("", [Validators.required, OzValidators.ssin], this.ozAsyncValidators.uniqueSsin.bind(this.ozAsyncValidators)),
+      badge: this.fb.control("", Validators.required, this.ozAsyncValidators.uniqueBadge.bind(this.ozAsyncValidators)),
       photo: this.fb.control(""),
       priv_phone: this.fb.control(""),
       work_phone: this.fb.control(""),
       birthdate: this.fb.control("", Validators.required),
       medical_examination_date: this.fb.control(""),
       rescuer: this.fb.control(false),
+      epi: this.fb.control(false),
+      cova: this.fb.control(false),
+      catenary_grounding: this.fb.control(false),
       certifications: this.userCertifications,
       work_regimes: this.userWorkRegimes
     });
@@ -103,6 +107,9 @@ export class ManagePersonComponent implements OnInit {
       this.current.pnr = this.createPersonForm.controls['pnr'].value;
       this.current.priv_phone = this.createPersonForm.controls['priv_phone'].value;
       this.current.rescuer = this.createPersonForm.controls['rescuer'].value;
+      this.current.epi = this.createPersonForm.controls['epi'].value;
+      this.current.cova = this.createPersonForm.controls['cova'].value;
+      this.current.catenary_grounding = this.createPersonForm.controls['catenary_grounding'].value;
       this.current.ssin = this.createPersonForm.controls['ssin'].value;
       this.current.work_phone = this.createPersonForm.controls['work_phone'].value;
       this.current.certifications = this.userCertifications.value;
